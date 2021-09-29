@@ -20,7 +20,7 @@ public class Matrix
     
     public Matrix times(Matrix B)
     {
-        double[][] temp = new double[B.getRowDimension()][columnDimension];
+        double[][] C = new double[B.getRowDimension()][columnDimension];
 
         if (columnDimension == B.getRowDimension())
         {
@@ -28,10 +28,10 @@ public class Matrix
             {
                 for (int j = 0; j < B.getRowDimension(); j++)
                 {
-                    temp[i][j] += matrix[i][j] * B.getArray()[i][j];
+                    C[i][j] += matrix[i][j] * B.getArray()[i][j];
                 }
             }
-            return new Matrix(temp, B.getRowDimension(), columnDimension);
+            return new Matrix(C, B.getRowDimension(), columnDimension);
         }
         else
         {
