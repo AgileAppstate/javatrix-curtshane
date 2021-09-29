@@ -9,9 +9,44 @@ package Javatrix;
  */
 public class Matrix
 {
-    // Fields
+    private double[][] matrix;
+    private int columnDimension;
+    private int rowDimension;
     
-    // Constructors
+    public Matrix(double[][] A)
+    {
+        matrix = A;
+    }
+    
+    public Matrix times(Matrix B)
+    {
+        double[][] temp = new double[B.getRowDimension()][columnDimension];
 
-    // Methods
+        if (columnDimension == B.getRowDimension())
+        {
+            for (int i = 0; i < columnDimension; i++)
+            {
+                for (int j = 0; j < B.getRowDimension(); j++)
+                {
+                    temp[i][j] += matrix[i][j] * B.getArray()[i][j];
+                }
+            }
+            return new Matrix(temp, B.getRowDimension(), columnDimension);
+        }
+        else
+        {
+            throw new IllegalArgumentException(
+                "Matix inner dimensions must agree.");
+        }
+    }
+
+    public int getColumnDimension()
+    {
+        return columnDimension;
+    }
+
+    public int getRowDimension()
+    {
+        return rowDimension;
+    }
 }
