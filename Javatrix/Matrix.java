@@ -1,5 +1,3 @@
-package Javatrix;
-
 /**
  * The Matrix class does matrix calculations.
  *
@@ -13,25 +11,42 @@ public class Matrix
     private int columnDimension;
     private int rowDimension;
     
-    public Matrix(double[][] A)
+    public Matrix(double[][] a)
     {
-        matrix = A;
+        matrix = a;
+        columnDimension = matrix[0].length;
+        rowDimension = matrix.length;
     }
     
-    public Matrix times(Matrix B)
+    /**
+     * Performs matrix multiplication.
+     *
+     * @param b the matrix to multiply by
+     * @return the product the matricies
+     * @throws IllegalArgumentException inner dimensions of the matricies
+     *                                  must be the same
+     */
+    public Matrix times(Matrix b) throws IllegalArgumentException
     {
-        double[][] C = new double[B.getRowDimension()][columnDimension];
-
-        if (columnDimension == B.getRowDimension())
+        if (columnDimension == b.getRowDimension())
         {
-            for (int i = 0; i < columnDimension; i++)
+            double[][] c = new double[rowDimension][b.getColumnDimension()];
+            int sum = 0;
+
+            for (int i = 0; i < rowDimension; i++)
             {
-                for (int j = 0; j < B.getRowDimension(); j++)
+                for (int j = 0; j < b.getColumnDimension(); j++)
                 {
-                    C[i][j] += matrix[i][j] * B.getArray()[i][j];
+                    for (int k = 0; k < columnDimension; k++)
+                    {
+                        sum += matrix[i][k] * b.getArray()[k][j];
+                    }
+                    c[i][j] = sum;
+                    sum = 0;
                 }
+                
             }
-            return new Matrix(C, B.getRowDimension(), columnDimension);
+            return new Matrix(c);
         }
         else
         {
@@ -40,6 +55,11 @@ public class Matrix
         }
     }
 
+    public double[][] getArray()
+    {
+        return matrix;
+    }
+    
     public int getColumnDimension()
     {
         return columnDimension;
