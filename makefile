@@ -12,6 +12,7 @@ JUNIT5_JAR = junit-platform-console-standalone-1.2.0.jar
 JUNIT5_RUNNER = org.junit.platform.console.ConsoleLauncher
 CKSTYLE_COMMAND =  -jar /usr/local/checkstyle-5.5/checkstyle-5.5-all.jar
 CKSTYLE_XML = cs_appstate_checks.xml
+SRC_DIR = ./Javatrix
 
 default: 
 	@echo "usage: make target"
@@ -37,15 +38,19 @@ targetlist:
 #etc.
 #Essential that command lines start with single TAB character
 
-test: $(JUNIT5_JAR)
-	java -cp .:$(JUNIT5_JAR) $(JUNIT5_RUNNER) --scan-class-path 
+compile: $(SRC_DIR)/Matrix.java MatrixTest.java
+	cd $(SRC_DIR); \
+		javac -cp .:../$(JUNIT5_JAR) Matrix.java ../MatrixTest.java
 
-defchk: Calculator.java $(CKSTYLE_XML)
+test: $(JUNIT5_JAR)
+	java -cp .:$(JUNIT5_JAR) $(JUNIT5_RUNNER) --scan-class-path
+
+defchk: $(SRC_DIR)/Matrix.java $(CKSTYLE_XML)
 #	checkstyle Calculator.java
 	java $(CKSTYLE_COMMAND) -c $(CKSTYLE_XML) Calculator.java
 
-customchk: Calculator.java style.xml
-	java $(CKSTYLE_COMMAND) -c style.xml Calculator.java
+customchk: $(SRC_DIR)/Matrix.java style.xml
+	java $(CKSTYLE_COMMAND) -c style.xml $<
 
 style.xml:
 	@echo "Custom checkstyle needs a local style.xml file."

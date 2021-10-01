@@ -1,32 +1,51 @@
+/* 
+ * JUnit5 test class
+ */
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
-
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class MatrixTest
-{
-    private Matrix a;
+import Javatrix.Matrix;
 
-    @BeforeEach
-    public void setUp()
-    {
-        double[][] vals = {{ 1, 2, 3 },
-                           { 4, 5, 6 }};
-        a = new Matrix(vals);
-    }
+public class MatrixTest {
 
-    @Test
+   private Matrix matrix;
+
+   @Test
+   public void testConstructor1() {
+      double[][] a = {{1., 2.5, 3.1415},{5.0, 16.3, 2.0},{1.0, 2.0, 3.0}};
+      Matrix m = new Matrix(a);
+
+      double[][] mMatrix = m.getArray();
+      assertEquals(a, mMatrix);
+   }
+
+   @Test
+   public void testConstructor2() {
+      Matrix m = new Matrix(3, 2, 1.0);
+      double[][] a = {{1.0, 1.0}, {1.0, 1.0}, {1.0, 1.0}};
+   }
+
+   @Test
+   public void testGetArray() {
+      double[][] a = {{1., 2.5, 3.1415},{5.0, 16.3, 2.0},{1.0, 2.0, 3.0}};
+      Matrix m = new Matrix(a);
+
+      double[][] mMatrix = m.getArray();
+      assertEquals(a, mMatrix);
+   }
+  
+  @Test
     public void testTimes()
     {
-        double[][] vals = {{ 7 , 8  },
+        double[][] aVals = {{ 1, 2, 3 },
+                           { 4, 5, 6 }};
+        a = new Matrix(aVals);
+        double[][] bvals = {{ 7 , 8  },
                            { 9 , 10 },
                            { 11, 12 }};
-        Matrix b = new Matrix(vals);
+        Matrix b = new Matrix(bVals);
         double[][] expected = {{  58,  64 },
                                { 139, 154 }};
         double[][] actual = a.times(b).getArray();
@@ -45,4 +64,3 @@ public class MatrixTest
         }
     }
 }
-

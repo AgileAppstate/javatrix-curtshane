@@ -7,17 +7,33 @@
  */
 public class Matrix
 {
+    // Fields
     private double[][] matrix;
     private int columnDimension;
     private int rowDimension;
     
-    public Matrix(double[][] a)
+    // Constructors
+    public Matrix(double[][] A)
     {
-        matrix = a;
+        matrix = A;
         columnDimension = matrix[0].length;
         rowDimension = matrix.length;
     }
-    
+      
+    public Matrix(int m, int n, double s) {
+        this.matrix = new double[m][n];
+        for (int row = 0; row < m; row++) {
+           for (int col = 0; col < n; col++) {
+              this.matrix[row][col] = s;
+           }
+        }
+    }
+
+    // Methods
+    public double[][] getArray() {
+      return this.matrix;
+    }
+  
     /**
      * Performs matrix multiplication.
      *
@@ -68,5 +84,4 @@ public class Matrix
     public int getRowDimension()
     {
         return rowDimension;
-    }
 }
