@@ -41,8 +41,8 @@ public class MatrixTest {
     {
         double[][] aVals = {{ 1, 2, 3 },
                            { 4, 5, 6 }};
-        a = new Matrix(aVals);
-        double[][] bvals = {{ 7 , 8  },
+        Matrix a = new Matrix(aVals);
+        double[][] bVals = {{ 7 , 8  },
                            { 9 , 10 },
                            { 11, 12 }};
         Matrix b = new Matrix(bVals);

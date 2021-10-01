@@ -1,3 +1,5 @@
+package Javatrix;
+
 /**
  * The Matrix class does matrix calculations.
  *
@@ -71,11 +73,6 @@ public class Matrix
         }
     }
 
-    public double[][] getArray()
-    {
-        return matrix;
-    }
-    
     public int getColumnDimension()
     {
         return columnDimension;
@@ -84,4 +81,5 @@ public class Matrix
     public int getRowDimension()
     {
         return rowDimension;
+    }
 }
