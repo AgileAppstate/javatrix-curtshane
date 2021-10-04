@@ -29,6 +29,8 @@ public class Matrix
               this.matrix[row][col] = s;
            }
         }
+        columnDimension = matrix[0].length;
+        rowDimension = matrix.length;
     }
 
     // Methods
