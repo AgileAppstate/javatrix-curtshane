@@ -35,6 +35,18 @@ public class Matrix
     public double[][] getArray() {
       return this.matrix;
     }
+
+    public void print(int w, int d) {
+      String fStr = String.format("%%%d.%df  ", w, d);
+      for (int row = 0; row < matrix.length; row++) {
+         System.out.printf("[ ");
+         for (int col = 0; col < matrix[row].length; col++) {
+            System.out.printf(fStr, matrix[row][col]);
+         }
+         System.out.printf(" ]");
+         System.out.println();
+      }
+    }
   
     /**
      * Performs matrix multiplication.
