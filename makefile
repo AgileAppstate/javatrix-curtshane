@@ -52,6 +52,12 @@ defchk: $(SRC_DIR)/Matrix.java $(CKSTYLE_XML)
 customchk: $(SRC_DIR)/Matrix.java style.xml
 	java $(CKSTYLE_COMMAND) -c style.xml $<
 
+run:
+	java Testtrix
+
+clean:
+	rm *.class $(SRC_DIR)/*.class
+
 style.xml:
 	@echo "Custom checkstyle needs a local style.xml file."
 	@echo "Copy cs_appstate_checks.xml into style.xml and edit as needed."
