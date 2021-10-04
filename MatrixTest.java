@@ -52,7 +52,7 @@ public class MatrixTest {
          {5.0, 5.0, 5.0}
       };
       Matrix m = new Matrix(a);
-      Matrix.main(null);
+      m.print(5, 3);
       assertEquals("[ 5.000  5.000  5.000   ]\n[ 5.000  5.000  5.000   ]\n" + 
                    "[ 5.000  5.000  5.000   ]\n", outContent.toString());
    }
