@@ -12,7 +12,7 @@ JUNIT5_JAR = junit-platform-console-standalone-1.2.0.jar
 JUNIT5_RUNNER = org.junit.platform.console.ConsoleLauncher
 CKSTYLE_COMMAND =  -jar /usr/local/checkstyle-5.5/checkstyle-5.5-all.jar
 CKSTYLE_XML = cs_appstate_checks.xml
-SRC_DIR = ./Javatrix
+SRC_DIR = ./javatrix
 
 default: 
 	@echo "usage: make target"
@@ -38,9 +38,9 @@ targetlist:
 #etc.
 #Essential that command lines start with single TAB character
 
-compile: $(SRC_DIR)/Matrix.java MatrixTest.java
+compile: $(SRC_DIR)/Matrix.java MatrixTest.java Testtrix.java
 	cd $(SRC_DIR); \
-		javac -cp .:../$(JUNIT5_JAR) Matrix.java ../MatrixTest.java
+		javac -cp .:../$(JUNIT5_JAR) Matrix.java ../MatrixTest.java ../Testtrix.java
 
 test: $(JUNIT5_JAR)
 	java -cp .:$(JUNIT5_JAR) $(JUNIT5_RUNNER) --scan-class-path
