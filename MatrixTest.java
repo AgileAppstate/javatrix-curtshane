@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.io.PrintStream;
 import java.io.ByteArrayOutputStream;
 
-import Javatrix.Matrix;
+import javatrix.Matrix;
 
 public class MatrixTest {
 
