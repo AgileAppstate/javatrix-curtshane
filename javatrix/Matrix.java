@@ -1,4 +1,4 @@
-package Javatrix;
+package javatrix;
 
 /**
  * The Matrix class does matrix calculations.
