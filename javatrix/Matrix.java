@@ -15,39 +15,69 @@ public class Matrix
     private int rowDimension;
     
     // Constructors
-    public Matrix(double[][] A)
+    /**
+     * Constructs a new Matrix object.
+     *
+     * @param a matrix to construct
+     */
+    public Matrix(double[][] a)
     {
-        matrix = A;
+        matrix = a;
         columnDimension = matrix[0].length;
         rowDimension = matrix.length;
     }
-      
-    public Matrix(int m, int n, double s) {
+    
+    /**
+     * Constructs a new Matrix object.
+     *
+     * @param m row dimension
+     * @param n column dimension
+     * @param s data constant
+     */ 
+    public Matrix(int m, int n, double s)
+    {
         this.matrix = new double[m][n];
-        for (int row = 0; row < m; row++) {
-           for (int col = 0; col < n; col++) {
-              this.matrix[row][col] = s;
-           }
+        for (int row = 0; row < m; row++)
+        {
+            for (int col = 0; col < n; col++)
+            {
+                this.matrix[row][col] = s;
+            }
         }
         columnDimension = matrix[0].length;
         rowDimension = matrix.length;
     }
 
     // Methods
-    public double[][] getArray() {
-      return this.matrix;
+    /**
+     * Get the matrix as a 2D array.
+     *
+     * @return matrix
+     */
+    public double[][] getArray()
+    {
+        return this.matrix;
     }
-
-    public void print(int w, int d) {
-      String fStr = String.format("%%%d.%df  ", w, d);
-      for (int row = 0; row < matrix.length; row++) {
-         System.out.printf("[ ");
-         for (int col = 0; col < matrix[row].length; col++) {
-            System.out.printf(fStr, matrix[row][col]);
-         }
-         System.out.printf(" ]");
-         System.out.println();
-      }
+    
+    /**
+     * Prints the matrix.
+     *
+     * @param w column width
+     * @param d decimal places
+     */
+    public void print(int w, int d)
+    {
+        String fStr = String.format("%%%d.%df  ", w, d);
+        for (int row = 0; row < matrix.length; row++)
+        {
+            System.out.printf("[ ");
+            for (int col = 0; col < matrix[row].length; col++)
+            {
+                System.out.printf(fStr, matrix[row][col]);
+            }
+            System.out.printf(" ]");
+            System.out.println();
+        }
     }
   
     /**
@@ -87,11 +117,21 @@ public class Matrix
         }
     }
 
+    /**
+     * Get the column dimension.
+     *
+     * @return column dimension
+     */
     public int getColumnDimension()
     {
         return columnDimension;
     }
 
+    /**
+     * Get the row dimension.
+     *
+     * @return row dimension
+     */
     public int getRowDimension()
     {
         return rowDimension;

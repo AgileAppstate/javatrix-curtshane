@@ -46,8 +46,7 @@ test: $(JUNIT5_JAR)
 	java -cp .:$(JUNIT5_JAR) $(JUNIT5_RUNNER) --scan-class-path
 
 defchk: $(SRC_DIR)/Matrix.java $(CKSTYLE_XML)
-#	checkstyle Calculator.java
-	java $(CKSTYLE_COMMAND) -c $(CKSTYLE_XML) Calculator.java
+	java $(CKSTYLE_COMMAND) -c $(CKSTYLE_XML) $(SRC_DIR)/Matrix.java
 
 customchk: $(SRC_DIR)/Matrix.java style.xml
 	java $(CKSTYLE_COMMAND) -c style.xml $<
