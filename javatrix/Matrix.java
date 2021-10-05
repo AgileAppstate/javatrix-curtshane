@@ -118,6 +118,24 @@ public class Matrix
     }
 
     /**
+     * Multiply a matrix by a scalar in place, A = s*A.
+     *
+     * @param s - scalar
+     * @return replace A by s*A
+     */
+    public Matrix timesEquals(double s)
+    {
+        for (int row = 0; row < rowDimension; row++)
+        {
+            for (int col = 0; col < columnDimension; col++)
+            {
+                matrix[row][col] *= s;
+            }
+        }
+        return this;
+    }
+
+    /**
      * Get the column dimension.
      *
      * @return column dimension
