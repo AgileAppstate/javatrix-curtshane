@@ -116,6 +116,24 @@ public class Matrix
                 "Matix inner dimensions must agree.");
         }
     }
+    
+    /**
+     * Matrix transpose.
+     *
+     * @return A'
+     */
+    public Matrix transpose()
+    {
+        double[][] t = new double[columnDimension][rowDimension];
+        for (int row = 0; row < rowDimension; row++)
+        {
+            for (int col = 0; col < columnDimension; col++)
+            {
+                t[col][row] = matrix[row][col];
+            }
+        }
+        return new Matrix(t);
+    }
 
     /**
      * Get the column dimension.
