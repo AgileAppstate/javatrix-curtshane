@@ -61,11 +61,11 @@ public class MatrixTest {
     public void testTimes()
     {
         double[][] aVals = {{ 1, 2, 3 },
-                           { 4, 5, 6 }};
+                            { 4, 5, 6 }};
         Matrix a = new Matrix(aVals);
         double[][] bVals = {{ 7 , 8  },
-                           { 9 , 10 },
-                           { 11, 12 }};
+                            { 9 , 10 },
+                            { 11, 12 }};
         Matrix b = new Matrix(bVals);
         double[][] expected = {{  58,  64 },
                                { 139, 154 }};
@@ -73,7 +73,32 @@ public class MatrixTest {
         
         for (int i = 0; i < actual.length; i++)
         {
-            for (int j = 0; i < actual[0].length; i++)
+            for (int j = 0; j < actual[0].length; j++)
+            {
+                if (actual[i][j] != expected[i][j])
+                {
+                    fail("Indicies do not match!\n" +
+                         "Expected[" + i + "][" + j + "]: " + expected[i][j] + "\n" +
+                         "Actual[" + i + "][" + j + "]: " + actual[i][j] + "\n");
+                }
+            }
+        }
+    }
+
+    @Test
+    public void testTimesEquals()
+    {
+        double[][] aVals = {{ 1, 2, 3 },
+                            { 4, 5, 6 }};
+        Matrix a = new Matrix(aVals);
+        
+        double[][] expected = {{  5, 10, 15 },
+                               { 20, 25, 30 }};
+        double[][] actual = a.timesEquals(5).getArray();
+        
+        for (int i = 0; i < actual.length; i++)
+        {
+            for (int j = 0; j < actual[0].length; j++)
             {
                 if (actual[i][j] != expected[i][j])
                 {
