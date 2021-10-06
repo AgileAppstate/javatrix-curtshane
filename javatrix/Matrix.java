@@ -1,5 +1,7 @@
 package javatrix;
 
+import java.util.Random;
+
 /**
  * The Matrix class does matrix calculations.
  *
@@ -151,6 +153,29 @@ public class Matrix
             }
         }
         return this;
+    }
+
+    /**
+     * Generate matrix with random elements.
+     *
+     * @param m The number of rows.
+     * @param n The number of columns.
+     * @return A matrix with random elements.
+     */
+    public static Matrix random(int m, int n)
+    {
+        Random rand = new Random();
+        double[][] matrixArr = new double[m][n];
+
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < m; j++)
+            {
+                matrixArr[i][j] = rand.nextDouble();
+            }
+        }
+
+        return new Matrix(matrixArr);
     }
 
     /**
