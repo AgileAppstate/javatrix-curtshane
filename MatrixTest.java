@@ -3,6 +3,7 @@
  */
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 
@@ -144,5 +145,311 @@ public class MatrixTest {
         Matrix a = new Matrix(aVals);
 
         assertEquals(a, a.clone());
+    }
+  
+    public void testMinus1()
+    {
+        int rows = 3;
+        int cols = 5;
+        double[][] aArr = new double[rows][cols];
+        double[][] bArr = new double[rows][cols];
+        double[][] cArr = new double[rows][cols];
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                aArr[i][j] = 1;
+                bArr[i][j] = 1;
+                cArr[i][j] = 0;
+            }
+        }
+
+        Matrix a = new Matrix(aArr);
+        Matrix b = new Matrix(bArr);
+        Matrix c = a.minus(b);
+  
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                assertEquals(c.getArray()[i][j], cArr[i][j]);
+            }
+        }
+    }
+
+    @Test
+    public void testMinus2()
+    {
+        double[][] aArr = new double[3][5];
+        double[][] bArr = new double[3][6];
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+               aArr[i][j] = 1;
+            }
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+               bArr[i][j] = 1;
+            }
+        }
+
+        Matrix a = new Matrix(aArr);
+        Matrix b = new Matrix(bArr);
+        assertThrows(IllegalArgumentException.class, ()->{a.minus(b);});
+    }
+
+    @Test
+    public void testMinus3()
+    {
+        double[][] aArr = new double[3][5];
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+               aArr[i][j] = 1;
+            }
+        }
+
+        Matrix a = new Matrix(aArr);
+        Matrix b = null;
+        assertThrows(NullPointerException.class, ()->{a.minus(b);});
+    }
+
+    @Test
+    public void testMinusEquals1()
+    {
+        int rows = 3;
+        int cols = 5;
+        double[][] aArr = new double[rows][cols];
+        double[][] bArr = new double[rows][cols];
+        double[][] cArr = new double[rows][cols];
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                aArr[i][j] = 1;
+                bArr[i][j] = 1;
+                cArr[i][j] = 0;
+            }
+        }
+
+        Matrix a = new Matrix(aArr);
+        Matrix b = new Matrix(bArr);
+        Matrix c = a.minusEquals(b);
+        
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                assertEquals(c.getArray()[i][j], cArr[i][j]);
+                assertEquals(a.getArray()[i][j], cArr[i][j]);
+            }
+        }
+    }
+
+    @Test
+    public void testMinusEquals2()
+    {
+        double[][] aArr = new double[3][5];
+        double[][] bArr = new double[3][6];
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+               aArr[i][j] = 1;
+            }
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+               bArr[i][j] = 1;
+            }
+        }
+
+        Matrix a = new Matrix(aArr);
+        Matrix b = new Matrix(bArr);
+        assertThrows(IllegalArgumentException.class, ()->{a.minusEquals(b);});
+    }
+
+    @Test
+    public void testMinusEquals3()
+    {
+        double[][] aArr = new double[3][5];
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+               aArr[i][j] = 1;
+            }
+        }
+
+        Matrix a = new Matrix(aArr);
+        Matrix b = null;
+        assertThrows(NullPointerException.class, ()->{a.minusEquals(b);});
+    }
+    
+    public void testPlus1()
+    {
+        int rows = 3;
+        int cols = 5;
+        double[][] aArr = new double[rows][cols];
+        double[][] bArr = new double[rows][cols];
+        double[][] cArr = new double[rows][cols];
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                aArr[i][j] = 1;
+                bArr[i][j] = 1;
+                cArr[i][j] = 2;
+            }
+        }
+
+        Matrix a = new Matrix(aArr);
+        Matrix b = new Matrix(bArr);
+        Matrix c = a.plus(b);
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                assertEquals(c.getArray()[i][j], cArr[i][j]);
+            }
+        }
+    }
+    
+    public void testPlus2()
+    {
+        double[][] aArr = new double[3][5];
+        double[][] bArr = new double[3][6];
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+               aArr[i][j] = 1;
+            }
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+               bArr[i][j] = 1;
+            }
+        }
+
+        Matrix a = new Matrix(aArr);
+        Matrix b = new Matrix(bArr);
+        assertThrows(IllegalArgumentException.class, ()->{a.plus(b);});
+    }
+
+    @Test
+    public void testPlus3()
+    {
+        double[][] aArr = new double[3][5];
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+               aArr[i][j] = 1;
+            }
+        }
+
+        Matrix a = new Matrix(aArr);
+        Matrix b = null;
+        assertThrows(NullPointerException.class, ()->{a.plus(b);});
+    }
+
+    @Test
+    public void testPlusEquals1()
+    {
+        int rows = 3;
+        int cols = 5;
+        double[][] aArr = new double[rows][cols];
+        double[][] bArr = new double[rows][cols];
+        double[][] cArr = new double[rows][cols];
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                aArr[i][j] = 1;
+                bArr[i][j] = 1;
+                cArr[i][j] = 2;
+            }
+        }
+
+        Matrix a = new Matrix(aArr);
+        Matrix b = new Matrix(bArr);
+        Matrix c = a.plusEquals(b);
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                assertEquals(c.getArray()[i][j], cArr[i][j]);
+                assertEquals(a.getArray()[i][j], cArr[i][j]);
+            }
+        }
+    }
+
+    @Test
+    public void testPlusEquals2()
+    {
+        double[][] aArr = new double[3][5];
+        double[][] bArr = new double[3][6];
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+               aArr[i][j] = 1;
+            }
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+               bArr[i][j] = 1;
+            }
+        }
+
+        Matrix a = new Matrix(aArr);
+        Matrix b = new Matrix(bArr);
+        assertThrows(IllegalArgumentException.class, ()->{a.plusEquals(b);});
+    }
+
+    @Test
+    public void testPlusEquals3()
+    {
+        double[][] aArr = new double[3][5];
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+               aArr[i][j] = 1;
+            }
+        }
+
+        Matrix a = new Matrix(aArr);
+        Matrix b = null;
+        assertThrows(NullPointerException.class, ()->{a.plusEquals(b);});
     }
 }
