@@ -154,6 +154,69 @@ public class Matrix
     }
 
     /**
+     * Returns a matrix that is the difference of this.Matrix and
+     * the given Matrix argument.
+     *
+     * @param B - The subtraction operand matrix.
+     * @exception IllegalArgumentException if operand matrices' dimensions don't match.
+     * @exception NullPointerException if B is null.
+     * @return A new matrix that is the result of this.Matrix - B.
+     */
+    public Matrix minus(Matrix B)
+    {
+        if (B.rowDimension != this.rowDimension ||
+            B.columnDimension != this.columnDimension)
+        {
+            throw new IllegalArgumentException("Operand matrices are not of the same dimensions.");
+        }
+        if (B == null)
+        {
+            throw new NullPointerException("Null operand was passed.");
+        }
+
+        double[][] resultArr = new double[rowDimension][columnDimension];
+        for (int row = 0; row < rowDimension; row++)
+        {
+            for (int col = 0; col < columnDimension; col++)
+            {
+                resultArr[row][col] = matrix[row][col] - B.matrix[row][col];
+            }
+        }
+        return new Matrix(resultArr);
+    }
+
+    /**
+     * Performs an in-place matrix subtraction;
+     * This.matrix is modified by this method.
+     *
+     * @param B - The subtraction operand matrix.
+     * @exception IllegalArgumentException if operand matrices' dimensions don't match.
+     * @exception NullPointerException if B is null.
+     * @return A new matrix that is the result of this.Matrix - B.
+     */
+    public Matrix minusEquals(Matrix B)
+    {
+        if (B.rowDimension != this.rowDimension ||
+            B.columnDimension != this.columnDimension)
+        {
+            throw new IllegalArgumentException("Operand matrices are not of the same dimensions.");
+        }
+        if (B == null)
+        {
+            throw new NullPointerException("Null operand was passed.");
+        }
+
+        for (int row = 0; row < rowDimension; row++)
+        {
+            for (int col = 0; col < columnDimension; col++)
+            {
+                matrix[row][col] -= B.matrix[row][col];
+            }
+        }
+        return new Matrix(matrix);
+    }
+
+    /**
      * Get the column dimension.
      *
      * @return column dimension
