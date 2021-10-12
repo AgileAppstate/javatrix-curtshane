@@ -154,6 +154,17 @@ public class Matrix
     }
 
     /**
+     * Clones the matrix object by performing a shallow copy.
+     *
+     * @return A reference to this.Matrix.
+     */
+    @Override
+    public Object clone()
+    {
+        return (Object) this;
+    }
+
+    /**
      * Get the column dimension.
      *
      * @return column dimension
