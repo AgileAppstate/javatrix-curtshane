@@ -309,4 +309,27 @@ public class Matrix
     {
         return rowDimension;
     }
+
+    /**
+     * Generate identity matrix.
+     *
+     * @param m - Number of rows.
+     * @param n - Number of columns.
+     * @throws IllegalArgumentException if m and n are not equl.
+     * @return An m-by-n matrix with ones on the diagonal and zeros elsewhere.
+     */
+    public static Matrix identity(int m, int n)
+    {
+        if (m != n)
+        {
+            throw new IllegalArgumentException("An identity matrix must be square.");
+        }
+
+        double[][] a = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            a[i][i] = 1;
+        }
+        return new Matrix(a);
+    }
 }

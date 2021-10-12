@@ -452,4 +452,27 @@ public class MatrixTest {
         Matrix b = null;
         assertThrows(NullPointerException.class, ()->{a.plusEquals(b);});
     }
+
+    @Test
+    public void testIdentity1()
+    {
+        double[][] expected = {{ 1, 0, 0 },
+                               { 0, 1, 0 },
+                               { 0, 0, 1 }};
+        double[][] actual = Matrix.identity(3, 3).getArray();
+        
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                assertEquals(expected[i][j], actual[i][j]);
+            }
+        }
+    }
+
+    @Test
+    public void testIdentity2()
+    {
+        assertThrows(IllegalArgumentException.class, ()->{ Matrix.identity(2,3); });
+    }
 }
