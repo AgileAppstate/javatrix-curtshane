@@ -138,6 +138,15 @@ public class MatrixTest {
     }
 
     @Test
+    public void testClone()
+    {
+        double[][] aVals = {{1,2,3,4}
+                           ,{5,6,7,8}};
+        Matrix a = new Matrix(aVals);
+
+        assertEquals(a, a.clone());
+    }
+  
     public void testMinus1()
     {
         int rows = 3;

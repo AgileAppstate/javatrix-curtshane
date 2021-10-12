@@ -154,6 +154,17 @@ public class Matrix
     }
 
     /**
+     * Clones the matrix object by performing a shallow copy.
+     *
+     * @return A reference to this.Matrix.
+     */
+    @Override
+    public Object clone()
+    {
+        return (Object) this;
+    }
+  
+    /**
      * Returns a matrix that is the difference of this.Matrix and
      * the given Matrix argument.
      *
