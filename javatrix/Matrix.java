@@ -309,4 +309,12 @@ public class Matrix
     {
         return rowDimension;
     }
+
+    /**
+     * Make a deep copy of a matrix.
+     */
+    public Matrix copy()
+    {
+        return new Matrix(matrix);
+    }
 }
