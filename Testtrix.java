@@ -18,7 +18,8 @@ public class Testtrix {
        System.out.print("2) Matrix subtraction\n");
        System.out.print("3) Matrix multiplication\n");
        System.out.print("4) Scalar matrix multiplication\n");
-       System.out.print("5) Matrix transposition\n\n");
+       System.out.print("5) Matrix transposition\n");
+       System.out.print("6) Identity matrix\n\n");
    }
 
    private int getOperation()
@@ -26,7 +27,7 @@ public class Testtrix {
        int opcode;
 
        do {
-          System.out.print("Enter a number (1-5) and press Enter: ");
+          System.out.print("Enter a number (1-6) and press Enter: ");
 
           try
           {
@@ -39,11 +40,11 @@ public class Testtrix {
               scan.nextLine();
           }
 
-          if ((opcode < 1 || opcode > 5) && opcode != -1)
+          if ((opcode < 1 || opcode > 6) && opcode != -1)
           {
               System.out.println("That's not a valid operation, please try again.");
           }
-       } while (opcode < 1 || opcode > 5);
+       } while (opcode < 1 || opcode > 6);
 
        return opcode;
    }
@@ -218,6 +219,23 @@ public class Testtrix {
        result.print(5, 3);
    }
 
+   private void identity()
+   {
+      int numRows;
+      int numCols;
+      Matrix m;
+
+      System.out.print("Enter the number of rows (1-32) for your matrix: ");
+      numRows = getUserInt();
+
+      System.out.print("Enter the number of columns (1-32) for your matrix: ");
+      numCols = getUserInt();
+
+      m = Matrix.identity(numRows, numCols);
+      System.out.print("\nThe identity matrix:\n");
+      m.print(1, 0);
+   }
+
    public void run()
    {
       int opcode;
@@ -240,6 +258,9 @@ public class Testtrix {
              break;
           case 5:
              transposition();
+             break;
+          case 6:
+             identity();
              break;
           default:
              System.out.println("That's not an operation.");
