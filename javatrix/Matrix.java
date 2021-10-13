@@ -177,6 +177,143 @@ public class Matrix
 
         return new Matrix(matrixArr);
     }
+  
+    /** 
+     * Clones the matrix object by performing a shallow copy.
+     *
+     * @return A reference to this.Matrix.
+     */
+    @Override
+    public Object clone()
+    {
+        return (Object) this;
+    }
+  
+    /**
+     * Returns a matrix that is the difference of this.Matrix and
+     * the given Matrix argument.
+     *
+     * @param B - The subtraction operand matrix.
+     * @exception IllegalArgumentException if operand matrices' dimensions don't match.
+     * @exception NullPointerException if B is null.
+     * @return A new matrix that is the result of this.Matrix - B.
+     */
+    public Matrix minus(Matrix B)
+    {
+        if (B.rowDimension != this.rowDimension ||
+            B.columnDimension != this.columnDimension)
+        {
+            throw new IllegalArgumentException("Operand matrices are not of the same dimensions.");
+        }
+        if (B == null)
+        {
+            throw new NullPointerException("Null operand was passed.");
+        }
+      
+        double[][] resultArr = new double[rowDimension][columnDimension];
+        for (int row = 0; row < rowDimension; row++)
+        {
+            for (int col = 0; col < columnDimension; col++)
+            {
+                resultArr[row][col] = matrix[row][col] - B.matrix[row][col];
+            }
+        }
+        return new Matrix(resultArr);
+    }
+  
+     /**
+     * Returns a matrix that is the sum of this.Matrix and
+     * the given Matrix argument.
+     *
+     * @param B - The summation operand matrix.
+     * @exception IllegalArgumentException if operand matrices' dimensions don't match.
+     * @exception NullPointerException if B is null.
+     * @return A new matrix that is the result of this.Matrix + B.
+     */
+    public Matrix plus(Matrix B)
+    {
+        if (B.rowDimension != this.rowDimension ||
+            B.columnDimension != this.columnDimension)
+        {
+           throw new IllegalArgumentException("Operand matrices are not of the same dimensions.");
+        }
+        if (B == null)
+        {
+           throw new NullPointerException("Null operand was passed.");
+        }
+
+        double[][] resultArr = new double[rowDimension][columnDimension];
+        for (int row = 0; row < rowDimension; row++)
+        {
+            for (int col = 0; col < columnDimension; col++)
+            {
+                resultArr[row][col] = matrix[row][col] + B.matrix[row][col];
+            }
+        }
+        return new Matrix(resultArr);
+    }
+
+    /**
+     * Performs an in-place matrix subtraction;
+     * This.matrix is modified by this method.
+     *
+     * @param B - The subtraction operand matrix.
+     * @exception IllegalArgumentException if operand matrices' dimensions don't match.
+     * @exception NullPointerException if B is null.
+     * @return A new matrix that is the result of this.Matrix - B.
+     */
+    public Matrix minusEquals(Matrix B)
+    {
+        if (B.rowDimension != this.rowDimension ||
+            B.columnDimension != this.columnDimension)
+        {
+            throw new IllegalArgumentException("Operand matrices are not of the same dimensions.");
+        }
+        if (B == null)
+        {
+            throw new NullPointerException("Null operand was passed.");
+        }
+
+        for (int row = 0; row < rowDimension; row++)
+        {
+            for (int col = 0; col < columnDimension; col++)
+            {
+                matrix[row][col] -= B.matrix[row][col];
+              }
+        }
+        return new Matrix(matrix);
+    }
+  
+     /**
+     * Performs an in-place matrix summation;
+     * This.matrix is modified by this method.
+     *
+     * @param B - The summation operand matrix.
+     * @exception IllegalArgumentException if operand matrices' dimensions don't match.
+     * @exception NullPointerException if B is null.
+     * @return A new matrix that is the result of this.Matrix + B.
+     */
+    public Matrix plusEquals(Matrix B)
+    {
+        if (B.rowDimension != this.rowDimension ||
+            B.columnDimension != this.columnDimension)
+        {
+           throw new IllegalArgumentException("Operand matrices are not of the same dimensions.");
+        }
+        if (B == null)
+        {
+           throw new NullPointerException("Null operand was passed.");
+        }
+
+        for (int row = 0; row < rowDimension; row++)
+        {
+            for (int col = 0; col < columnDimension; col++)
+            {
+                matrix[row][col] += B.matrix[row][col];
+            }
+        }
+        return new Matrix(matrix);
+    }
 
     /**
      * Get the column dimension.
@@ -196,5 +333,36 @@ public class Matrix
     public int getRowDimension()
     {
         return rowDimension;
+    }
+
+    /**
+     * Generate identity matrix.
+     *
+     * @param m - Number of rows.
+     * @param n - Number of columns.
+     * @throws IllegalArgumentException if m and n are not equl.
+     * @return An m-by-n matrix with ones on the diagonal and zeros elsewhere.
+     */
+    public static Matrix identity(int m, int n)
+    {
+        if (m != n)
+        {
+            throw new IllegalArgumentException("An identity matrix must be square.");
+        }
+
+        double[][] a = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            a[i][i] = 1;
+        }
+        return new Matrix(a);
+    }
+  
+    /**
+     * Make a deep copy of a matrix.
+     */
+    public Matrix copy()
+    {
+        return new Matrix(matrix);
     }
 }
