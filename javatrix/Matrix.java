@@ -332,4 +332,12 @@ public class Matrix
         }
         return new Matrix(a);
     }
+  
+    /**
+     * Make a deep copy of a matrix.
+     */
+    public Matrix copy()
+    {
+        return new Matrix(matrix);
+    }
 }

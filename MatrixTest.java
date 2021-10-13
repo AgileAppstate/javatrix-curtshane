@@ -475,4 +475,21 @@ public class MatrixTest {
     {
         assertThrows(IllegalArgumentException.class, ()->{ Matrix.identity(2,3); });
     }
+  
+    public void testCopy()
+    {
+        Matrix a = new Matrix(3, 3, 5.0);
+        Matrix b = a.copy();
+
+        assertEquals(a.getRowDimension(), b.getRowDimension());
+        assertEquals(a.getColumnDimension(), b.getColumnDimension());
+
+        for (int i = 0; i < a.getRowDimension(); i++)
+        {
+            for (int j = 0; j < a.getColumnDimension(); j++)
+            {
+                assertEquals(a.getArray()[i][j], b.getArray()[i][j]);
+            }
+        }
+    }
 }
