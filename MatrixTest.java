@@ -138,6 +138,12 @@ public class MatrixTest {
     }
 
     @Test
+    public void testRandom()
+    {
+       // TODO: Implement this... It's hard to implement a test for a random number
+       // generator without adding a parameter to random() to seed the generator...
+    }
+  
     public void testClone()
     {
         double[][] aVals = {{1,2,3,4}
